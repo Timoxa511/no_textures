@@ -164,7 +164,7 @@ void gm_prc ()
     while ( END (&gmres, &endlever) )
         {
         gmres = 0;
-        if ($(GAMERESULT(player->gmProgress, VK_ESCAPE)) == 1) gmres = 1;
+        if ($(GAMERESULT(player->gmProgress, VK_ESCAPE)) > 1) gmres = 1;
         eng_.run();
         txSleep(120);
         }
@@ -194,14 +194,14 @@ int GAMERESULT (hider::GMPROGRESS PlayerPrg, int EscapeBut)
         txSetColor (TX_RED);
         txDrawText (0, 0, txGetExtentX(), txGetExtentY(), "œŒ–¿∆≈Õ»≈");
         txSleep(300);
-        return 1;
+        return 2;
         }
     if (PlayerPrg == hider::GMPROGRESS::WIN )
         {
         txSetColor (TX_GREEN);
         txDrawText (0, 0, txGetExtentX(), txGetExtentY(), "œŒ¡≈ƒ¿");
         txSleep(300);
-        return 1;
+        return 3;
         }
 
     return -1;
@@ -210,16 +210,15 @@ int GAMERESULT (hider::GMPROGRESS PlayerPrg, int EscapeBut)
 //-----------------------------------------------------------------------------
 int END (int* gmres, int* endlever)
     {
-
-    if (*gmres == 1)
-        {
-        if (*endlever == -1) *endlever = 1;
-        }
-
     if (*endlever != -1)
         {
         if (--*endlever == 0) return 0;
         }
+    if (*gmres == 1)
+        {
+        if (*endlever == -1) *endlever = 10;
+        }
+
     return 1;
     }
 //{Map::-----------------------------------------------------------------------

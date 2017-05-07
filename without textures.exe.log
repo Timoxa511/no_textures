@@ -1,0 +1,282 @@
+
+--------------------------------------------------
+TXLib соболезнует:
+
+Программа: C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe, файл: C:\Users\Тимофей\Desktop\информатика\no_textures\shrd_ptr.h, строка: 137, функция: shrd_ptr<T>::proxy::~proxy() [with T = hider],
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "p_-> status_ == 0".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005042B4 (32-bit), Flags: CMdRe0, Thread: 0x950 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00446DA8 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 1 0x00446EBD in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 2 0x00427771 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (487):
+
+    485: 
+    486: //-----------------------------------------------------------------------------
+=>  487: chaser::~chaser ()
+    488:     {}
+    489: //-----------------------------------------------------------------------------
+
+# 3 0x004277A5 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (488):
+
+    486: //-----------------------------------------------------------------------------
+    487: chaser::~chaser ()
+=>  488:     {}
+    489: //-----------------------------------------------------------------------------
+    490: void chaser::logic ()
+
+# 4 0x00446BF5 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 5 0x00446CCD in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 6 0x004AD3BE in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: _Destroy<shrd_ptr<ob> >() at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/new (57):
+
+     55:   {
+     56:   public:
+=>   57:     bad_alloc() throw() { }
+     58: 
+     59:     // This declaration is not useless:
+
+# 7 0x0048625B in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: __destroy<shrd_ptr<ob>*>() at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 8 0x004AD3D8 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: _Destroy<shrd_ptr<ob>*>() at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/new (57):
+
+     55:   {
+     56:   public:
+=>   57:     bad_alloc() throw() { }
+     58: 
+     59:     // This declaration is not useless:
+
+# 9 0x004AD3F4 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: _Destroy<shrd_ptr<ob>*, shrd_ptr<ob> >() at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/new (57):
+
+     55:   {
+     56:   public:
+=>   57:     bad_alloc() throw() { }
+     58: 
+     59:     // This declaration is not useless:
+
+#10 0x004A73EE in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+#11 0x004A3674 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+#12 0x00426C77 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (269):
+
+    267: 
+    268: //-----------------------------------------------------------------------------
+=>  269: eng::~eng ()
+    270:     {}
+    271: 
+
+#13 0x004266A3 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: gm_prc() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (165):
+
+    163:     printf ("***\n");
+    164:     printf ("size %d", eng_.ar_.size());
+=>  165:     }
+    166:     }
+    167: 
+
+#14 0x00426549 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: main() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (124):
+
+    122:     {
+    123:     startcom();
+=>  124:     gm_prc ();
+    125: 
+    126:     }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Program Files (x86)\TX\TXLib.h
+Compiled:	May  7 2017 21:07:41, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	May 07 2017 21:07:45
+
+Run file:	C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe
+Directory:	C:\Users\Тимофей\Desktop\информатика\no_textures
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib предупреждает:
+
+Программа: C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe,
+
+ВНЕЗАПНО: Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00446D65 в файле c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h на строке 45. Попытка прочесть данные по адресу 0xBB01173A. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005032B4 (32-bit), Flags: CMdRe0, Thread: 0x5F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00446D65 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 1 0x004265D9 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: gm_prc() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (155):
+
+    153:     eng_.dump();
+    154:     {
+=>  155:     shrd_ptr<hider> player (eng_.findPlayer());
+    156: 
+    157:     while (  !(GetAsyncKeyState(VK_SPACE) || player->gmProgress == hider::GMPROGRESS::LOSE)  )
+
+# 2 0x00426549 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: main() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (124):
+
+    122:     {
+    123:     startcom();
+=>  124:     gm_prc ();
+    125: 
+    126:     }
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in void startcom() at C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.cpp (634):
+
+    632:     txCreateWindow (MAPSIZE*CellSize, MAPSIZE*CellSize);
+    633:     txSetColor (TX_WHITE);
+=>  634:     txSetFillColor (TX_WHITE);
+    635:     }
+    636: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Program Files (x86)\TX\TXLib.h
+Compiled:	May  7 2017 21:17:01, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	May 07 2017 21:17:05
+
+Run file:	C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe
+Directory:	C:\Users\Тимофей\Desktop\информатика\no_textures
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует:
+
+Программа: C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe,
+
+ВНЕЗАПНО: signal (11, 0x00): SIGSEGV: Доступ по неверному указателю. Ставьте ассерты! 
+
+Нарушение доступа к памяти.
+
+#1: Исключение EXCEPTION_ACCESS_VIOLATION (0xC0000005) при выполнении кода по адресу 0x00446D65 в файле c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h на строке 45. Попытка прочесть данные по адресу 0xBB01173A. Спасибо _txVectoredExceptionHandler(), что сообщил. Люблю его <3
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#2: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005032B4 (32-bit), Flags: CMdRe0, Thread: 0x5F4 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x00446D65 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at c:/program files (x86)/codeblocks/mingw/include/c++/4.8.1/debug/functions.h (45):
+
+     43:   // An arbitrary iterator pointer is not singular.
+     44:   inline bool
+=>   45:   __check_singular_aux(const void*) { return false; }
+     46: 
+     47:   // We may have an iterator that derives from _Safe_iterator_base but isn't
+
+# 1 0x004265D9 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: gm_prc() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (155):
+
+    153:     eng_.dump();
+    154:     {
+=>  155:     shrd_ptr<hider> player (eng_.findPlayer());
+    156: 
+    157:     while (  !(GetAsyncKeyState(VK_SPACE) || player->gmProgress == hider::GMPROGRESS::LOSE)  )
+
+# 2 0x00426549 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: main() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (124):
+
+    122:     {
+    123:     startcom();
+=>  124:     gm_prc ();
+    125: 
+    126:     }
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in void startcom() at C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.cpp (634):
+
+    632:     txCreateWindow (MAPSIZE*CellSize, MAPSIZE*CellSize);
+    633:     txSetColor (TX_WHITE);
+=>  634:     txSetFillColor (TX_WHITE);
+    635:     }
+    636: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Program Files (x86)\TX\TXLib.h
+Compiled:	May  7 2017 21:17:01, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	May 07 2017 21:17:05
+
+Run file:	C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe
+Directory:	C:\Users\Тимофей\Desktop\информатика\no_textures
+
+--------------------------------------------------
