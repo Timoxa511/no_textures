@@ -280,3 +280,63 @@ Run file:	C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe
 Directory:	C:\Users\Тимофей\Desktop\информатика\no_textures
 
 --------------------------------------------------
+
+--------------------------------------------------
+TXLib соболезнует:
+
+Программа: C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe, файл: C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.cpp, строка: 337, функция: void eng::skanMap(),
+
+Сообщение: ВНЕЗАПНО: Логическая ошибка: Неверно, что "0".
+
+#1: TXLib [Ver: 00173a, Rev: 105], Instance: 0x005042B4 (32-bit), Flags: CMdRe0, Thread: 0x1208 (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004272A2 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: skanMap() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (337):
+
+    335:                 obj = FREE;
+    336:                 }
+=>  337:             if (obj == WALL) assert(0);
+    338:             }
+    339: 
+
+# 1 0x00427028 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (306):
+
+    304:     ar_ ()
+    305:     {
+=>  306:     skanMap();
+    307:     }
+    308: 
+
+# 2 0x004265CB in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: gm_prc() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (155):
+
+    153: 
+    154:     Map karta = yakarta;
+=>  155:     eng eng_ (&karta);
+    156:     eng_.dump();
+    157: 
+
+# 3 0x00426571 in C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe: main() at C:/Users/Тимофей/Desktop/информатика/no_textures/without textures.cpp (127):
+
+    125:     {
+    126:     startcom();
+=>  127:     gm_prc ();
+    128: 
+    129:     }
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library) - TXLib [Ver: 00173a, Rev: 105]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	C:\Program Files (x86)\TX\TXLib.h
+Compiled:	May 11 2017 22:02:36, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	May 11 2017 22:02:40
+
+Run file:	C:\Users\Тимофей\Desktop\информатика\no_textures\without textures.exe
+Directory:	C:\Users\Тимофей\Desktop\информатика\no_textures
+
+--------------------------------------------------

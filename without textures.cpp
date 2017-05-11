@@ -9,6 +9,7 @@ const char PLAYER ='I';
 const char ENEMY  ='&';
 const char WALL   ='X';
 const char FREE   ='.';
+const char FINISH ='#';
 
 
 void startcom ();
@@ -54,6 +55,7 @@ struct ob
     //----------------
     ob () = delete;
     ob (TYPE type, eng* eng, vec coords);
+    char Cell(const vec& crds);
     void dump ();
     virtual ~ob () = 0;
     virtual void logic () = 0;
@@ -64,8 +66,8 @@ struct hider  : ob
     {
     enum GMPROGRESS {LOSE, WIN, CONTINUE};
 
-    GMPROGRESS gmProgress;
-    int LastKeyState;
+    GMPROGRESS gmProgress_;
+    int LastKeyState_;
     //------------------
     hider (eng* motor, vec coords);
     virtual ~hider () override;
@@ -117,7 +119,6 @@ struct eng
     };
 
 //-----------------------------------------------------------------------------
-int END (int* gmres, int* timer);
 int GAMERESULT (hider::GMPROGRESS PlayerPrg, int EscapeBut);
 //-----------------------------------------------------------------------------
 
@@ -125,46 +126,67 @@ int GAMERESULT (hider::GMPROGRESS PlayerPrg, int EscapeBut);
 int main ()
     {
     startcom();
-    gm_prc ();
+    while (1)
+        gm_prc ();
 
     }
 
 void gm_prc ()
     {
-    char yakarta [MAPSIZE][MAPSIZE+1] = {"....................",
-                                         ".....&..............",
-                                         "....................",
-                                         ".....&..............",
-                                         "....................",
-                                         "....................",
-                                         "....................",
-                                         "....................",
-                                         "....................",
-                                         "....................",
-                                         "....................",
-                                         "....................",
-                                         ".&..................",
-                                         "...........I........",
-                                         "....................",
-                                         "....................",
+    char carta [MAPSIZE][MAPSIZE+1] =   {"..............XXX...",
+                                         ".....&........X.X...",
+                                         "..............X.X...",
+                                         ".....&........X.X...",
+                                         "..............X.X...",
+                                         ".X.XXXXXXXXXXXX.X...",
+                                         "....X.....I.....X...",
+                                         "....X.XXXXXXXX..X...",
+                                         "..XXX........X......",
+                                         ".XX...XX.X...X..X...",
+                                         "..X.XXX......X..XX..",
+                                         "..X.X........X......",
+                                         ".&.&.........X..XXX.",
+                                         "............X..X..X.",
+                                         "...........X..X...X.",
+                                         ".............X....X.",
                                          "......&.............",
                                          "....................",
                                          "....................",
                                          "...................."};
 
+    char yakarta [MAPSIZE][MAPSIZE+1] = {".X...X..............",
+                                         ".X...X......X.......",
+                                         "...&................",
+                                         "...XX...............",
+                                         ".............XXX....",
+                                         "XXX.....X...........",
+                                         "....................",
+                                         "....XX.....XXX......",
+                                         "....................",
+                                         "....................",
+                                         "..XXX.....X.........",
+                                         "................XX..",
+                                         ".................X..",
+                                         "...........XX....X..",
+                                         "...X................",
+                                         "....................",
+                                         ".&.......I......&...",
+                                         "........&...........",
+                                         ".....&......&.....&.",
+                                         "..&.....&..#....&..."};
+
     Map karta = yakarta;
     eng eng_ (&karta);
     eng_.dump();
 
-    int endlever = -1;
-    int gmres = 0;
+    int EnD = 0;
     {
     shrd_ptr<hider> player (eng_.findPlayer());
 
-    while ( END (&gmres, &endlever) )
+    while ( !EnD )
         {
-        gmres = 0;
-        if ($(GAMERESULT(player->gmProgress, VK_ESCAPE)) == 1) gmres = 1;
+        EnD = 0;
+        if (GAMERESULT(player->gmProgress_, VK_ESCAPE) == 1) EnD = 1;
         eng_.run();
         txSleep(120);
         }
@@ -207,25 +229,11 @@ int GAMERESULT (hider::GMPROGRESS PlayerPrg, int EscapeBut)
     return -1;
     }
 
-//-----------------------------------------------------------------------------
-int END (int* gmres, int* endlever)
-    {
 
-    if (*gmres == 1)
-        {
-        if (*endlever == -1) *endlever = 1;
-        }
-
-    if (*endlever != -1)
-        {
-        if (--*endlever == 0) return 0;
-        }
-    return 1;
-    }
 //{Map::-----------------------------------------------------------------------
 Map::Map()
     {
-    Clear();
+    //Clear();
     memset (defMap_, '.', MAPSIZE*MAPSIZE);
     }
 
@@ -237,7 +245,7 @@ Map::Map (char defAr [MAPSIZE][MAPSIZE+1])
             {
             defMap_[y][x] = defAr[y][x];
             }
-    Clear();
+    //Clear();
     }
 
 //-----------------------------------------------------------------------------
@@ -282,14 +290,20 @@ void Map::draw ()
                     }
                 case WALL   :
                     {
-                    txSetColor(TX_LIGHTGRAY);
-                    txSetFillColor(TX_GRAY);
+                    txSetColor(RGB(230,230,230));
+                    txSetFillColor(RGB(169, 50, 3));
                     break;
                     }
                 case FREE   :
                     {
                     txSetColor(TX_LIGHTGRAY);
                     txSetFillColor(TX_GRAY);
+                    break;
+                    }
+                case FINISH :
+                    {
+                    txSetColor(TX_YELLOW);
+                    txSetFillColor(RGB(210, 187, 21));
                     break;
                     }
                 default :
@@ -363,7 +377,7 @@ void eng::skanMap()
 //-----------------------------------------------------------------------------
 void eng::updateMap()
     {
-    map_->Clear();
+    //map_->Clear();
     map_->PlaceDefault();
     for (auto& obj : ar_)
         {
@@ -386,19 +400,13 @@ void eng::run ()
 //-----------------------------------------------------------------------------
 shrd_ptr<ob> eng::findPlayer()
     {
-    //int nPlrs = 0;
-    //ob* Plyr = nullptr;
     for (auto& obj : ar_)
         {
         if (obj->type_ == PLAYER)
             {
-            //nPlrs++;
-            //Plyr = &obj;
             return obj;
             }
         }
-    //assert (nPlrs == 1);
-    //return Plyr;
     }
 //-----------------------------------------------------------------------------
 void eng::add (shrd_ptr<ob> obj)
@@ -441,6 +449,11 @@ ob::~ob ()
     }
 
 //-----------------------------------------------------------------------------
+char ob::Cell(const vec& crds)
+    {
+    return eng_->map_->defMap_[crds.y][crds.x];
+    }
+//-----------------------------------------------------------------------------
 void ob::dump ()
     {
 
@@ -456,18 +469,18 @@ void ob::dump ()
 //-----------------------------------------------------------------------------
 hider::hider (eng* motor, vec coords) :
     ob (HIDER, motor, coords),
-    gmProgress (CONTINUE),
-    LastKeyState (0)
+    gmProgress_ (CONTINUE),
+    LastKeyState_ (0)
     {}
 
 //-----------------------------------------------------------------------------
 
 void hider::logic ()
     {
-    if (gmProgress != WIN)
-        if (gmProgress != LOSE)
-            if (coords_.x == 0 && coords_.y == 0) gmProgress = WIN;
-            else gmProgress = CONTINUE;
+    if (gmProgress_ != WIN)
+        if (gmProgress_ != LOSE)
+            if (Cell(coords_) == FINISH) gmProgress_ = WIN;
+            else gmProgress_ = CONTINUE;
 
     }
 
@@ -518,9 +531,10 @@ void hider::moove ()
         {
         tempcords.x ++;
         }
-
+    char cell = Cell(tempcords);
     if (0 <= tempcords.y && tempcords.y < MAPSIZE &&
-        0 <= tempcords.x && tempcords.x < MAPSIZE)
+        0 <= tempcords.x && tempcords.x < MAPSIZE &&
+        cell == FREE || cell == FINISH)
         coords_ = tempcords;
 
     }
@@ -548,15 +562,18 @@ chaser::~chaser ()
 void chaser::logic ()
     {
     if ( (abs(coords_.x - aim_->coords_.x) == 1 && coords_.y == aim_->coords_.y) ||
-         (abs(coords_.y - aim_->coords_.y) == 1 && coords_.x == aim_->coords_.x)) aim_->gmProgress = hider::LOSE;
+         (abs(coords_.y - aim_->coords_.y) == 1 && coords_.x == aim_->coords_.x)) aim_->gmProgress_ = hider::LOSE;
     }
 
 //-----------------------------------------------------------------------------
 void chaser::moove ()
     {
-    vec delta (aim_->coords_.x - coords_.x, aim_->coords_.y - coords_.y);
-    if (abs(delta.x) > abs(delta.y)) coords_.x += get_sign(delta.x);
-                    else             coords_.y += get_sign(delta.y);
+    vec tempcords = coords_;
+    vec delta (aim_->coords_.x - tempcords.x, aim_->coords_.y - tempcords.y);
+    if (abs(delta.x) > abs(delta.y))
+        tempcords.x += get_sign(delta.x);
+            else  tempcords.y += get_sign(delta.y);
+    if (Cell(tempcords) == FREE)  coords_ = tempcords;
     }
 
 
